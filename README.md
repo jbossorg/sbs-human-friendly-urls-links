@@ -8,6 +8,6 @@ Installation steps
 ------------------
 
 1. Build module by mvn package
-2. Copy target/classes/org/apache/struts2/views/freemarker/tags/URLModel.class (or take it from jar file)
-   to /usr/local/jive/applications/sbs/application/WEB-INF/classes/org/apache/struts2/views/freemarker/tags/.
+2. Copy `target/classes/org/apache/struts2/views/freemarker/tags/URLModel.class` (or take it from jar file)
+   to `/usr/local/jive/applications/sbs/application/WEB-INF/classes/org/apache/struts2/views/freemarker/tags/`.
    Note: directory structure needs to be created before
