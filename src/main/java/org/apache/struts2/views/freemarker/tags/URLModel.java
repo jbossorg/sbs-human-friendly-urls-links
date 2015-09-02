@@ -5,6 +5,9 @@
  */
 package org.apache.struts2.views.freemarker.tags;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import com.jivesoftware.community.lifecycle.JiveApplication;
 import com.opensymphony.xwork2.util.ValueStack;
 import org.apache.commons.logging.Log;
@@ -13,9 +16,6 @@ import org.apache.struts2.components.Component;
 import org.apache.struts2.components.URL;
 import org.springframework.beans.factory.NoSuchBeanDefinitionException;
 import org.springframework.context.ApplicationContext;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 /**
  * Extension of Struts2 URL tag.<br>
@@ -31,6 +31,8 @@ public class URLModel extends TagModel {
 
 	private static final Log log = LogFactory.getLog(URLModel.class);
 
+	public final String BEAN_NAME = "hfURLComponent";
+
 	public URLModel(ValueStack stack, HttpServletRequest req,
 					HttpServletResponse res) {
 		super(stack, req, res);
@@ -44,15 +46,16 @@ public class URLModel extends TagModel {
 			Object bean = null;
 			ApplicationContext applicationContext = (ApplicationContext) JiveApplication.getContext();
 			if (applicationContext != null) {
-				bean = applicationContext.getBean("hfURLComponent", new Object[]{stack, req, res});
+				bean = applicationContext.getBean(BEAN_NAME, stack, req, res);
 			}
 
 			if (bean != null && bean instanceof Component) {
-				log.debug("hfURLComponent bean founded");
+				log.trace(BEAN_NAME + " bean founded");
 				return (Component) bean;
 			}
 		} catch (NoSuchBeanDefinitionException e) {
-			// bean not found - do not log exception, it's not needed.
+			// let's keep in log in case of performance issue
+			log.debug(BEAN_NAME + " not found", e);
 		} catch (Exception e) {
 			log.error("Some unknown error occur during instantiation of hfURLComponent component", e);
 		}
