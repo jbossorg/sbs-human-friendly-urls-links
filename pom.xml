@@ -10,12 +10,12 @@
 		that override Struts2 URL Component
 	</description>
 	<url>https://github.com/jbossorg/sbs-human-friendly-urls-links</url>
-	<version>8.0.0</version>
+	<version>9.0.0</version>
 
 	<parent>
 		<groupId>com.jivesoftware.maven</groupId>
 		<artifactId>jive-parent-pom</artifactId>
-		<version>8.0.4.0-3</version>
+		<version>9.0.2.1-0</version>
 	</parent>
 
 	<inceptionYear>2009</inceptionYear>
